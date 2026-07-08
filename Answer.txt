@@ -1,0 +1,7 @@
+1. Why should the movie ID come from the URL instead of the request body?
+FastAPI path parameters like /movies/{movie_id} identify the specific resource, while Pydantic schemas in the body carry the update data. 
+This separation follows REST standards and lets FastAPI validate the ID and payload independently.
+
+2. Why should PUT not increase the number of records?
+A PUT endpoint replaces or modifies an existing record in-place, keeping the database count identical. 
+If the ID is missing, FastAPI should raise an HTTPException(status_code=404) instead of creating a new row.
